@@ -27,7 +27,8 @@
     <script>
         async function fetchSeedwaveData() {
             try {
-                const response = await fetch('https://seedwave.vercel.app/api/seedwave'); // API URL
+                // Fetch data from the main Seedwave API
+                const response = await fetch('https://seedwave.vercel.app/api/seedwave');
                 const data = await response.json();
 
                 // Update the overlay with the current seedwave data
