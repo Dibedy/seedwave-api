@@ -8,15 +8,15 @@
         body {
             margin: 0;
             padding: 0;
-            background: transparent; /* Transparent background for OBS */
-            font-family: 'Arial', sans-serif;
+            background: transparent;
+            font-family: Arial, sans-serif;
             color: white;
             text-align: center;
-            font-size: 36px; /* Adjust font size as needed */
+            font-size: 36px;
             overflow: hidden;
         }
         #seedwave-text {
-            font-size: 48px; /* Highlight the current seedwave */
+            font-size: 48px;
             font-weight: bold;
         }
     </style>
@@ -27,11 +27,11 @@
     <script>
         async function fetchSeedwaveData() {
             try {
-                const response = await fetch('https://seedwave.vercel.app/api/seedwave'); // Fetch data from your API
+                const response = await fetch('https://seedwave.vercel.app/api/seedwave'); // API URL
                 const data = await response.json();
 
                 // Update the overlay with the current seedwave data
-                document.getElementById("seedwave-text").textContent = 
+                document.getElementById("seedwave-text").textContent =
                     `Current Seedwave Level: ${data.seedwave}`;
             } catch (error) {
                 console.error("Error fetching seedwave data:", error);
@@ -41,7 +41,7 @@
 
         // Update the seedwave data every 5 seconds
         setInterval(fetchSeedwaveData, 5000);
-        fetchSeedwaveData(); // Initial fetch
+        fetchSeedwaveData();
     </script>
 </body>
 </html>
