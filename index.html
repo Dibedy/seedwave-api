@@ -36,8 +36,10 @@
     </style>
 </head>
 <body>
-    <div id="seedwave-text">Loading...</div>
-    <div id="next-seedwave-text">Loading...</div>
+    <div id="seedwave-text">
+        Current Seedwave Level: <span id="seedwave-number">Loading...</span>
+    </div>
+    <div id="next-seedwave-text">Next Seedwave in: Loading...</div>
 
     <script>
         async function fetchSeedwaveData() {
@@ -45,21 +47,21 @@
                 const response = await fetch('https://seedwave.vercel.app/api/seedwave'); // API URL
                 const data = await response.json();
 
-                // Update the overlay with the current seedwave level
-                const seedwaveTextElement = document.getElementById("seedwave-text");
+                // Update the overlay with the current seedwave data
+                const seedwaveNumberElement = document.getElementById("seedwave-number");
                 const nextSeedwaveTextElement = document.getElementById("next-seedwave-text");
 
                 const seedwaveLevel = data.seedwave;
-                seedwaveTextElement.textContent = `Current Seedwave Level: ${seedwaveLevel}`;
-                seedwaveTextElement.className = getLevelColorClass(seedwaveLevel);
+                seedwaveNumberElement.textContent = seedwaveLevel;
+                seedwaveNumberElement.className = getLevelColorClass(seedwaveLevel);
 
                 // Calculate and display the remaining time for the next seedwave
                 const expiresAt = data.expiresAt;
                 updateRemainingTime(expiresAt, nextSeedwaveTextElement);
             } catch (error) {
                 console.error("Error fetching seedwave data:", error);
-                document.getElementById("seedwave-text").textContent = "Error loading data";
-                document.getElementById("next-seedwave-text").textContent = "";
+                document.getElementById("seedwave-number").textContent = "Error";
+                document.getElementById("next-seedwave-text").textContent = "Error loading data";
             }
         }
 
@@ -100,4 +102,3 @@
     </script>
 </body>
 </html>
- 
