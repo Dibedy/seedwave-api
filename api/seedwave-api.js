@@ -27,4 +27,4 @@ export default function handler(req, res) {
         expiresAt: currentSeedwave.expiresAt,
         previousSeedwave: lastSeedwave || { level: 'N/A', endedAt: 'N/A' },
     });
-}
+} 
