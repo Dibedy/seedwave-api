@@ -46,33 +46,19 @@
 
         async function fetchSeedwaveData() {
     try {
-        console.log("Fetching seedwave data...");
         const response = await fetch('https://seedwave.vercel.app/api/seedwave'); // API URL
-        console.log("Response received:", response);
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
         const data = await response.json();
-        console.log("Data fetched:", data);
 
-        // Update the overlay with the current seedwave data
-        const seedwaveNumberElement = document.getElementById("seedwave-number");
-        const nextSeedwaveTextElement = document.getElementById("next-seedwave-text");
+                // Update the overlay with the current seedwave data
+                const seedwaveNumberElement = document.getElementById("seedwave-number");
+                const nextSeedwaveTextElement = document.getElementById("next-seedwave-text");
 
-        const seedwaveLevel = data.seedwave;
-        const isBloodseed = data.isBloodseed; // Check for bloodseed flag
-        seedwaveNumberElement.textContent = seedwaveLevel;
-        seedwaveNumberElement.className = getLevelColorClass(seedwaveLevel);
+                const seedwaveLevel = data.seedwave;
+                seedwaveNumberElement.textContent = seedwaveLevel;
+                seedwaveNumberElement.className = getLevelColorClass(seedwaveLevel);
 
-        // Add 🩸 emoji if it's a bloodseed
-        if (isBloodseed) {
-            seedwaveNumberElement.textContent += " 🩸"; // Append bloodseed indicator
-        }
-
-        // Update the remaining time countdown
-        const expiresAt = data.expiresAt;
+                // Update the remaining time countdown
+                const expiresAt = data.expiresAt;
 
         if (countdownInterval) clearInterval(countdownInterval); // Clear any existing interval
         updateRemainingTime(expiresAt, nextSeedwaveTextElement);
@@ -82,7 +68,6 @@
         document.getElementById("next-seedwave-text").textContent = "Error loading data";
     }
 }
-
 
         // Initial fetch and periodic updates every 5 minutes
         fetchSeedwaveData();
